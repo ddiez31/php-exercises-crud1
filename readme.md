@@ -30,7 +30,9 @@ Trier les noms par ordre alphabétique.
 
 ##Exercice 6
 
-Afficher le titre de tous les spectacles ainsi que l'artiste, la date et l'heure. Trier les titres par ordre alphabétique. Afficher les résultat comme ceci : *Spectacle* par *artiste*, le *date* à *heure*.
+Afficher le titre de tous les spectacles ainsi que l'artiste, la date et l'heure.
+Trier les titres par ordre alphabétique.
+Afficher les résultat comme ceci : *Spectacle* par *artiste*, le *date* à *heure*.
 
 ##Exercice 7
 
