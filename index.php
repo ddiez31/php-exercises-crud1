@@ -10,8 +10,8 @@
 
 <?php
 
-$user = 'root';
-$pass = '070401';
+$user = '****';
+$pass = '****';
 
 // liste clients
 try {
