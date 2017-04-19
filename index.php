@@ -108,7 +108,14 @@ echo '<hr>';
 try {
     $bdd = new PDO('mysql:host=localhost;dbname=colyseum',$user,$pass);
     echo '<strong>'."Liste clients classés:".'</strong><br>';
-    foreach($bdd->query('SELECT * FROM clients') as $row) {
+    foreach($bdd->query('SELECT * FROM clients WHERE card=0') as $row) {
+        echo('Nom: '.$row['lastName'].'<br>');
+        echo('Prénom: '.$row['firstName'].'<br>');
+        echo('Date de naissance: '.$row['birthDate'].'<br>');
+        echo('Carte de fidélité: Non<br>');
+        echo '<br>';
+    }
+    foreach($bdd->query('SELECT * FROM clients, cards WHERE clients.cardNumber=cards.cardNumber AND cardTypesId>1') as $row) {
         echo('Nom: '.$row['lastName'].'<br>');
         echo('Prénom: '.$row['firstName'].'<br>');
         echo('Date de naissance: '.$row['birthDate'].'<br>');
