@@ -112,12 +112,15 @@ try {
         echo('Nom: '.$row['lastName'].'<br>');
         echo('Prénom: '.$row['firstName'].'<br>');
         echo('Date de naissance: '.$row['birthDate'].'<br>');
-        if($row['card'] == 1) {
-            echo('Carte de fidélité: Oui<br>');
-            echo('Numéro de carte: '.$row['cardNumber'].'<br>');
-        } else {
-            echo('Carte de fidélité: Non<br>');
-        }
+        echo('Carte de fidélité: Non<br>');
+        echo '<br>';
+    }
+    foreach($bdd->query('SELECT * FROM clients, cards WHERE clients.cardNumber=cards.cardNumber AND cardTypesId=1') as $row) {
+        echo('Nom: '.$row['lastName'].'<br>');
+        echo('Prénom: '.$row['firstName'].'<br>');
+        echo('Date de naissance: '.$row['birthDate'].'<br>');
+        echo('Carte de fidélité: Oui<br>');
+        echo('Numéro de carte: '.$row['cardNumber'].'<br>');
         echo '<br>';
     }
     $bdd = null;
