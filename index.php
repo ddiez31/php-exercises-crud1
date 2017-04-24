@@ -108,27 +108,23 @@ echo '<hr>';
 try {
     $bdd = new PDO('mysql:host=localhost;dbname=colyseum',$user,$pass);
     echo '<strong>'."Liste clients classés:".'</strong><br>';
-    foreach($bdd->query('SELECT * FROM clients WHERE card=0') as $row) {
-        echo('Nom: '.$row['lastName'].'<br>');
-        echo('Prénom: '.$row['firstName'].'<br>');
-        echo('Date de naissance: '.$row['birthDate'].'<br>');
-        echo('Carte de fidélité: Non<br>');
-        echo '<br>';
-    }
-    foreach($bdd->query('SELECT * FROM clients, cards WHERE clients.cardNumber=cards.cardNumber AND cardTypesId>1') as $row) {
-        echo('Nom: '.$row['lastName'].'<br>');
-        echo('Prénom: '.$row['firstName'].'<br>');
-        echo('Date de naissance: '.$row['birthDate'].'<br>');
-        echo('Carte de fidélité: Non<br>');
-        echo '<br>';
-    }
-    foreach($bdd->query('SELECT * FROM clients, cards WHERE clients.cardNumber=cards.cardNumber AND cardTypesId=1') as $row) {
-        echo('Nom: '.$row['lastName'].'<br>');
-        echo('Prénom: '.$row['firstName'].'<br>');
-        echo('Date de naissance: '.$row['birthDate'].'<br>');
-        echo('Carte de fidélité: Oui<br>');
-        echo('Numéro de carte: '.$row['cardNumber'].'<br>');
-        echo '<br>';
+    foreach($bdd->query('SELECT * FROM clients LEFT JOIN cards ON clients.cardNumber=cards.cardNumber ORDER BY clients.id') as $row) {
+        switch($row['cardTypesId']) {
+            case !1:
+                echo('Nom: '.$row['lastName'].'<br>');
+                echo('Prénom: '.$row['firstName'].'<br>');
+                echo('Date de naissance: '.$row['birthDate'].'<br>');
+                echo('Carte de fidélité: Non<br>');
+                echo '<br>';
+                break;
+            case 1:
+                echo('Nom: '.$row['lastName'].'<br>');
+                echo('Prénom: '.$row['firstName'].'<br>');
+                echo('Date de naissance: '.$row['birthDate'].'<br>');
+                echo('Carte de fidélité: Oui<br>');
+                echo('Numéro de carte: '.$row['cardNumber'].'<br>');
+                echo '<br>';
+        }
     }
     $bdd = null;
 } catch(PDOException$e) {
